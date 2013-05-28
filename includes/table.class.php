@@ -7,21 +7,16 @@ class Table {
 		$this->database = new Database();
 	}
 
-	function AddToDB($tbl) {
-		// Set the arrays we'll need
+	public function AddToDB($tbl) {
 		$sql_columns = array();
 		$sql_columns_use = array();
 		$sql_value_use = array();
 
 		// Pull the column names from the table $tbl
-		//$pull_cols = mysql_query("SHOW COLUMNS FROM ".$tbl) or die("MYSQL ERROR: ".mysql_error());
 		$this->database->query("SHOW COLUMNS FROM ".$tbl);
 		$columns = $this->database->resultSet();
 
 		// Pull an associative array of the column names and put them into a non-associative array
-		//while ($columns = mysql_fetch_assoc($pull_cols)) {
-		//	$sql_columns[] = $columns["Field"];
-		//}
 		$arrFirstLen = count($columns);
 		for ($i=0; $i < $arrFirstLen; $i++) {
 			$sql_columns[] = $columns[$i]["Field"];
@@ -34,17 +29,10 @@ class Table {
 				if ($value == "DATESTAMP") {
 					$sql_value_use[] = "NOW()";
 				} else {
-					// If this variable contains a number, then don't add single quotes, otherwise check to see 
-					// if magic quotes are on and use addslashes if they aren't
-					if ( is_numeric($value) ) {
 					$sql_value_use[] = $value;
-					} else {
-						$sql_value_use[]  = $value;
-					}
 				}
 				// Put the column name into the array
 				$sql_columns_use[] = $key;
-
 			}
 		}
 
@@ -63,14 +51,6 @@ class Table {
 		}
 	}
 }
-
-
-
-
-
-
-
-
 
 
 ?>
