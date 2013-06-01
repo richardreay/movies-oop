@@ -73,6 +73,7 @@ echo $database->rowCount();
 			<input type="text" name="image" placeholder="Image Name" /><br />
 			<input type="submit" value="Add Actor" />
 		</form>
+		
 	</div>
 </body>
 </html>

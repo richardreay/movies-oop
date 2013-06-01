@@ -14,8 +14,8 @@ class Auth {
 		$characters = '0123456789abcdefghijklmnopqrstuvwxyz';
 		$string = '';
 		
-		for ($p = 0; $p < $length; $p++) {
-			$string .= $characters[mt_rand(0, strlen($characters))];
+		for ($p = 0; $p < 50; $p++) {
+			$string .= $characters[mt_rand(0, (strlen($characters)-1))];
 		}
 		
 		return $string;
@@ -49,7 +49,7 @@ class Auth {
 		$this->database->bind(':email', $email);
 		$this->database->bind(':password', $password);
 		$this->database->bind(':user_salt', $user_salt);
-		$this->database->bind(':is_verified', '1');
+		$this->database->bind(':is_verified', '1'); // set 0 to enable verification by email
 		$this->database->bind(':is_active', '1');
 		$this->database->bind(':is_admin', $is_admin);
 		$this->database->bind(':verification_code', $code);		
@@ -67,9 +67,9 @@ class Auth {
 	
 	public function login($email, $password) {
 		// select users row from database based on $email
-		$database->query('SELECT id, password, user_salt, is_verified, is_active, is_admin FROM users WHERE email = :email');
-		$database->bind(':email', $email);
-		$selection = $database->single();
+		$this->database->query('SELECT id, password, user_salt, is_verified, is_active, is_admin FROM users WHERE email = :email');
+		$this->database->bind(':email', $email);
+		$selection = $this->database->single();
 		
 		// salt and hash password for checking
 		$password = $selection['user_salt'] . $password;
@@ -101,15 +101,15 @@ class Auth {
 					$_SESSION['user_id'] = $selection['id'];
 					
 					// delete old logged_in_member records for user
-					$database->query('DELETE * FROM logged_in_member WHERE user_id = :user_id');
-					$database->bind(':user_id', $selection['id']);
+					$this->database->query('DELETE FROM logged_in_member WHERE user_id = :user_id');
+					$this->database->bind(':user_id', $selection['id']);
 					$this->database->execute();
 					
 					// insert new logged_in_member records for user
-					$database->query('INSERT INTO logged_in_member (user_id, session_id, token) VALUES (:user_id, :session_id, :token)');
-					$database->bind(':user_id', $selection['id']);
-					$database->bind(':session_id', session_id());
-					$database->bind(':token', $token);
+					$this->database->query('INSERT INTO logged_in_member (user_id, session_id, token) VALUES (:user_id, :session_id, :token)');
+					$this->database->bind(':user_id', $selection['id']);
+					$this->database->bind(':session_id', session_id());
+					$this->database->bind(':token', $token);
 					$inserted = $this->database->execute();
 					
 					// logged in
@@ -134,9 +134,9 @@ class Auth {
 	
 	public function checkSession() {
 		// select the row
-		$database->query('SELECT session_id, token FROM logged_in_member WHERE user_id = :user_id');
-		$database->bind(':user_id', $_SESSION['user_id']);
-		$selection = $database->single();
+		$this->database->query('SELECT session_id, token FROM logged_in_member WHERE user_id = :user_id');
+		$this->database->bind(':user_id', $_SESSION['user_id']);
+		$selection = $this->database->single();
 		
 		if ($selection) {
 			// check id and token
@@ -165,19 +165,13 @@ class Auth {
 	
 	public function logout() {
 		// remove user from logged in table
-		$database->query('DELETE * FROM logged_in_member WHERE user_id = :user_id');
-		$database->bind(':user_id', $_SESSION['user_id']);
+		$this->database->query('DELETE FROM logged_in_member WHERE user_id = :user_id');
+		$this->database->bind(':user_id', $_SESSION['user_id']);
 		$this->database->execute();
 		
 		session_destroy();
 	}
 	
-	
-
 }
-
-
-
-
 
 ?>
