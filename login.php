@@ -10,7 +10,7 @@ $errorMsg = 0;
 if (isset($_POST['submitted'])) {
 	if ($auth->login($_POST['email'], $_POST['password']) == 0) {
 		// login verified - load admin page
-		header('Location: admin.php');
+		header('Location: admin/admin.php');
 	} elseif ($auth->login($_POST['email'], $_POST['password']) == 4) {
 		// email and password do not match database
 		$errorMsg = 1;

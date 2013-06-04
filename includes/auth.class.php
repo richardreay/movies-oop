@@ -161,6 +161,13 @@ class Auth {
 		
 		// store in session
 		$_SESSION['token'] = $token;
+		
+		// update our logged_in record
+		$this->database->query('UPDATE logged_in_member SET session_id=:session_id, token=:token WHERE user_id=:user_id');
+		$this->database->bind(':user_id', $_SESSION['user_id']);
+		$this->database->bind(':session_id', session_id());
+		$this->database->bind(':token', $token);
+		$inserted = $this->database->execute();		
 	}
 	
 	public function logout() {
