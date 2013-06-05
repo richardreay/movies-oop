@@ -35,22 +35,22 @@ $database = new Database();
 
 
 // select a single row
-$database->query('SELECT fname, lname, dob, image FROM actors WHERE actors_id = :id');
-$database->bind(':id', '1');
-$row = $database->single();
-echo "<pre>";
-print_r($row);
-echo "</pre>";
+//$database->query('SELECT fname, lname, dob, image FROM actors WHERE actors_id = :id');
+//$database->bind(':id', '1');
+//$row = $database->single();
+//echo "<pre>";
+//print_r($row);
+//echo "</pre>";
 
 
 // select multiple rows
-$database->query('SELECT actors.fname, actors.lname, actors.gender, actors.dob, actors.image, countries.name FROM actors INNER JOIN countries ON actors.nationality=countries.country_id WHERE fname = :fname');
-$database->bind(':fname', 'Tim');
-$rows = $database->resultSet();
-echo "<pre>";
-print_r($rows);
-echo "</pre>";
-echo $database->rowCount();
+//$database->query('SELECT actors.fname, actors.lname, actors.gender, actors.dob, actors.image, countries.name FROM actors INNER JOIN countries ON actors.nationality=countries.country_id WHERE fname = :fname');
+//$database->bind(':fname', 'Tim');
+//$rows = $database->resultSet();
+//echo "<pre>";
+//print_r($rows);
+//echo "</pre>";
+//echo $database->rowCount();
 
 // use form post data to add single record to database
 // $movies->AddToDB('actors');
@@ -60,10 +60,16 @@ echo $database->rowCount();
 <!doctype html>
 <html>
 <head>
-	<title></title>
+	<meta charset="utf-8">
+	<title>not IMDB</title>
+	<link href="css/styles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<div id="divWrapper">
+		<header>
+			<div id="divLogo"><h1>not IMDB</h1></div>
+		</header>
+		<p>Some text on the page goes here and looks like this bro.</p>
 		<form action="index.php" method="post">
 			<input type="text" name="fname" placeholder="First Name" /><br />
 			<input type="text" name="lname" placeholder="Last Name" /><br />

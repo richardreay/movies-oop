@@ -48,6 +48,7 @@ class Table {
 				$this->database->bind(':'.$sql_columns_use[$i], $sql_value_use[$i]);
 			}
 			$this->database->execute();
+			return true;
 		}
 	}
 }

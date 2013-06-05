@@ -1,0 +1,35 @@
+/*
+
+	background color: #ecf0f1
+	purple: #9b59b6
+	dark grey: #7f8c8d
+	text: #34495e;
+
+*/
+
+body {
+	background-color: #ecf0f1;
+	text-align: center;
+	color: #34495e;
+}
+
+#divWrapper {
+	width: 960px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+#divLogo {
+	color: #9b59b6;
+}
+
+
+
+
+/*   ADMIN SECTION   */
+
+.addedMsg {
+	padding: 5px;
+	background-color: #9b59b6;
+	color: #ecf0f1;
+}

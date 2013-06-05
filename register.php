@@ -20,7 +20,8 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 <!doctype html>
 <html>
 <head>
-	<title></title>
+	<meta charset="utf-8">
+	<title>not IMDB</title>
 </head>
 <body>
 	<div id="divWrapper">

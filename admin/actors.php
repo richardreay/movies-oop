@@ -11,6 +11,7 @@ $auth = new Auth();
 $database = new Database();
 $movies = new Table();
 $errorMsg = 0;
+$addedMsg = 0;
 
 if (!isset($_SESSION['user_id'])) {
 	// Not logged in, send to login page.
@@ -32,8 +33,12 @@ if (!isset($_SESSION['user_id'])) {
 if (isset($_POST['addActorSubmitted'])) {
 	// add form submitted
 	// add in validation here
-	//$movies->AddToDB('actors');
 
+	// if a record is added, clear post array to remove sticky values
+	if ($movies->AddToDB('actors')) {
+		$_POST = array();
+		$addedMsg = 1;
+	}
 }
 
 ?>
@@ -41,16 +46,15 @@ if (isset($_POST['addActorSubmitted'])) {
 <!doctype html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<title></title>
+	<link href="../css/styles.css" rel="stylesheet" type="text/css" />
 	<script src="http://code.jquery.com/jquery-1.9.0.min.js" type="text/javascript" ></script>
 </head>
 <body>
 	<div id="divWrapper">
 		<h1>Update Actors</h1>
 		<p>Add an actor</p>
-		<?php if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-			echo 'its ajaxing';
-		} ?>
 		<form action="actors.php" method="post">
 			<input type="text" name="fname" placeholder="First Name" value="<?php if (isset($_POST['fname'])) echo $_POST['fname']; ?>" /><br />
 			<input type="text" name="lname" placeholder="Last Name" value="<?php if (isset($_POST['lname'])) echo $_POST['lname']; ?>" /><br />
@@ -62,7 +66,7 @@ if (isset($_POST['addActorSubmitted'])) {
 			$rows = $database->resultSet();
 			echo "<select name = 'nationality'>";
 			foreach ($rows as $row) {
-				echo "<option value = '{$row['name']}'";
+				echo "<option value = '{$row['country_id']}'";
 				if (isset($_POST['addActorSubmitted']) && $_POST['nationality'] == $row['name']) echo "selected = 'selected'"; 
 				echo ">{$row['name']}</option>";
 			}
@@ -73,15 +77,21 @@ if (isset($_POST['addActorSubmitted'])) {
 			<input type="submit" value="Add Actor" />
 			<input type="hidden" name="addActorSubmitted" value="TRUE" />
 		</form>
-		
+		<?php if ($addedMsg == 1) echo "<p class='addedMsg'>The actor was successfully added.</p>"; ?>
 		<h2>Edit Actors</h2>
 		<?php include('actorsPaginate.php'); ?>
 	</div>
 	<script type="text/javascript">
 		function js_paginate(page) {
-			$('#pagination').load( // this is the id of the div holding our cow list
-				'actorsPaginate.php', // the script that handles our listing from above
+			$('#pagination').load(
+				'actorsPaginate.php',
 				{'page':page} 
+			);
+		}
+		function js_delete(deleteID) {
+			$('#pagination').load(
+				'delete.php',
+				{'deleteID':deleteID}
 			);
 		}
 	</script>

@@ -8,6 +8,12 @@ include_once '../includes/pagination.class.php';
 
 if (!isset($database)) $database = new Database();
 
+// delete the requested record, then display updated paginated content
+$database->query('DELETE FROM actors WHERE actors_id = :actors_id');
+$database->bind(':actors_id', $_POST['deleteID']);
+$database->execute();
+
+
 $query = "SELECT actors.actors_id, actors.fname, actors.lname, actors.gender, actors.dob, actors.image, countries.name FROM actors INNER JOIN countries ON actors.nationality=countries.country_id";
 $database->query($query);
 $result = $database->resultSet();
