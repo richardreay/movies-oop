@@ -66,20 +66,45 @@ $database = new Database();
 </head>
 <body>
 	<div id="divWrapper">
-		<header>
-			<div id="divLogo"><h1>not IMDB</h1></div>
+		<header class="clear">
+			<div id="divLogo"><a href="index.php" title="return to the homepage"><img src="img/logo.png" alt="not IMDB" /></a></div>
+			<div id="divSearch">
+				<form action="index.php" method="post">
+					<input type="text" name="search" placeholder="Search for movie, actor etc" />
+				</form>
+			</div>
 		</header>
-		<p>Some text on the page goes here and looks like this bro.</p>
-		<form action="index.php" method="post">
-			<input type="text" name="fname" placeholder="First Name" /><br />
-			<input type="text" name="lname" placeholder="Last Name" /><br />
-			<input type="text" name="gender" placeholder="Gender" /><br />
-			<input type="text" name="dob" placeholder="YYYY-MM-DD" /><br />
-			<input type="text" name="nationality" placeholder="Nationality" /><br />
-			<input type="text" name="image" placeholder="Image Name" /><br />
-			<input type="submit" value="Add Actor" />
-		</form>
-		
-	</div>
+		<div id="divContent">
+			<p>Some text on the page goes here and looks like this bro.</p>
+			<form action="index.php" method="post">
+				<fieldset>
+					<label for="fname">First Name:</label>
+					<input type="text" id="fname" name="fname" placeholder="First Name" /><br />
+
+					<label for="lname">Last Name:</label>
+					<input type="text" id="lname" name="lname" placeholder="Last Name" /><br />
+					
+					<label for="gender">Gender:</label>
+					<input type="text" id="gender" name="gender" placeholder="Gender" /><br />
+
+					<label for="dob">DOB:</label>
+					<input type="text" id="dob" name="dob" placeholder="YYYY-MM-DD" /><br />
+
+					<label for="nationality">Nationality:</label>
+					<input type="text" id="nationality" name="nationality" placeholder="Nationality" /><br />
+
+					<label for="image">Image:</label>
+					<input type="text" id="image" name="image" placeholder="Image Name" /><br />
+					
+					<input type="submit" value="Submit" />
+					
+				</fieldset>
+			</form>
+		</div><!-- end of divContent -->
+		<footer>
+			<p>This is the footer!</p>
+		</footer>
+	</div><!-- end of divWrapper -->
+	
 </body>
 </html>

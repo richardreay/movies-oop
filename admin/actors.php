@@ -11,7 +11,12 @@ $auth = new Auth();
 $database = new Database();
 $movies = new Table();
 $errorMsg = 0;
-$addedMsg = 0;
+if (isset($_SESSION['submitted']) && $_SESSION['submitted'] == 1) {
+	$addedMsg = 1;
+	$_SESSION['submitted'] = 0;
+} else {
+	$addedMsg = 0;
+}
 
 if (!isset($_SESSION['user_id'])) {
 	// Not logged in, send to login page.
@@ -34,10 +39,11 @@ if (isset($_POST['addActorSubmitted'])) {
 	// add form submitted
 	// add in validation here
 
-	// if a record is added, clear post array to remove sticky values
+	// if a record is added, re-direct user to same page so they can't refresh the page and resubmit the form
+	// session variable created as a flag to use to create a success message on the re-directed page
 	if ($movies->AddToDB('actors')) {
-		$_POST = array();
-		$addedMsg = 1;
+		$_SESSION['submitted'] = 1;
+		header( 'Location: actors.php' );
 	}
 }
 

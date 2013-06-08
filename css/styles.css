@@ -7,20 +7,121 @@
 
 */
 
+body, div, h1, form, fieldset, input, textarea {
+	margin: 0; padding: 0; border: 0; outline: none;
+}
+
+.clear {
+	overflow: hidden;
+}
+
 body {
-	background-color: #ecf0f1;
+	background: #fff url('../img/body_bg.gif') top center no-repeat;
 	text-align: center;
 	color: #34495e;
 }
 
 #divWrapper {
 	width: 960px;
-	margin: 0 auto;
+	margin: 188px auto 0 auto;
 	text-align: left;
+}
+
+header {
+	background: transparent url('../img/header_bg.png') top left repeat;
+	height: 70px;
 }
 
 #divLogo {
 	color: #9b59b6;
+	float: left;
+}
+
+#divLogo img {
+	margin: 5px 0 0 5px;
+}
+
+#divSearch {
+	float: left;
+	margin: 20px 0 0 155px;
+}
+
+#divSearch input {
+	width: 240px;
+}
+
+
+
+
+
+#divContent {
+	background: transparent url('../img/content_bg.png') top left repeat;
+	padding: 10px;
+}
+
+
+
+
+
+/*    FORM STYLES    */
+
+label {
+	float: left;
+	clear: left;
+	margin: 8px 10px 0 0;
+	width: 95px;
+	text-align: right;
+	font-size: 14px;
+	color: #445668; 
+	text-transform: uppercase;
+	text-shadow: 0px 1px 0px #f2f2f2;
+}
+
+input {
+	width: 200px;
+	height: 30px;
+	padding: 2px 20px 2px 20px;
+	margin: 0 0 10px 0; 
+	background: #8e44ad;
+	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+	font-family: sans-serif;
+	font-size: 14px;
+	color: #fff;
+	text-transform: uppercase;
+	text-shadow: 0px -1px 0px #334f71; 
+}
+	input::-webkit-input-placeholder  {
+    	color: #DDC4E8; text-shadow: 0px -1px 0px #38506b;  
+	}
+	input:-moz-placeholder {
+	    color: #DDC4E8; text-shadow: 0px -1px 0px #DDC4E8; 
+	}
+
+textarea {
+	width: 260px; height: 170px; padding: 12px 20px 0px 20px; margin: 0 0 20px 0; 
+	background: #5E768D;
+	background: -moz-linear-gradient(top, #546A7F 0%, #5E768D 20%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#546A7F), color-stop(20%,#5E768D)); /* webkit */
+	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+	-moz-box-shadow: 0px 1px 0px #f2f2f2;-webkit-box-shadow: 0px 1px 0px #f2f2f2;
+	font-family: sans-serif; font-size: 14px; color: #f2f2f2; text-transform: uppercase; text-shadow: 0px -1px 0px #334f71; 
+}
+	textarea::-webkit-input-placeholder  {
+    	color: #a1b2c3; text-shadow: 0px -1px 0px #38506b;  
+	}
+	textarea:-moz-placeholder {
+	    color: #a1b2c3; text-shadow: 0px -1px 0px #38506b; 
+	}
+	
+input:focus, textarea:focus {
+	background: #9b59b6;
+}
+
+input[type=submit] {
+	width: 120px; height: 30px; padding: 5px 10px; margin: 0 15px 0 105px;
+	background: #A30CE4;
+	cursor: pointer;
+	color: #f2f2f2;
 }
 
 
