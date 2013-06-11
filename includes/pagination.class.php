@@ -71,12 +71,12 @@ class Pagination {
 			$this->links .= (!empty($params['class']))      ? 'class="'.$params['class'].'"' : '';
 			$this->links .= '><a href="#" ';
 			$this->links .= (!empty($params['function']))   ? 'onclick="'.$params['function'].'(1);"' : '';
-			$this->links .= '><< First</a></span> <span ';
+			$this->links .= '>First</a></span> <span ';
 			$this->links .= (!empty($params['class']))      ? 'class="'.$params['class'].'"' : '';
 			$this->links .= '><a href="#" ';
 			$prev_page = $this->current_page_number - 1;
 			$this->links .= (!empty($params['function']))   ? 'onclick="'.$params['function'].'(' . $prev_page . ');"' : '';
-			$this->links .= '>< Prev</a></span> ';
+			$this->links .= '>Prev</a></span> ';
 		}
 		
 		// loop over the rest of the links
@@ -105,12 +105,12 @@ class Pagination {
             $this->links .= '><a href="#" ';
             $next_page = $this->current_page_number + 1;
             $this->links .= (!empty($params['function']))   ? 'onclick="'.$params['function'].'(' . $next_page . ');"' : '';
-            $this->links .= '>Next ></a></span> ';
+            $this->links .= '>Next</a></span> ';
             $this->links .= '<span ';
             $this->links .= (!empty($params['class']))      ? 'class="'.$params['class'].'"' : '';
             $this->links .= '><a href="#" ';
             $this->links .= (!empty($params['function']))   ? 'onclick="'.$params['function'].'(' . $this->pages . ');"' : '';
-            $this->links .= '>Last >></a></span> ';
+            $this->links .= '>Last</a></span> ';
         }
 
 	}

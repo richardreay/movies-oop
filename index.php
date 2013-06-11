@@ -74,32 +74,37 @@ $database = new Database();
 				</form>
 			</div>
 		</header>
-		<div id="divContent">
-			<p>Some text on the page goes here and looks like this bro.</p>
-			<form action="index.php" method="post">
-				<fieldset>
-					<label for="fname">First Name:</label>
-					<input type="text" id="fname" name="fname" placeholder="First Name" /><br />
-
-					<label for="lname">Last Name:</label>
-					<input type="text" id="lname" name="lname" placeholder="Last Name" /><br />
-					
-					<label for="gender">Gender:</label>
-					<input type="text" id="gender" name="gender" placeholder="Gender" /><br />
-
-					<label for="dob">DOB:</label>
-					<input type="text" id="dob" name="dob" placeholder="YYYY-MM-DD" /><br />
-
-					<label for="nationality">Nationality:</label>
-					<input type="text" id="nationality" name="nationality" placeholder="Nationality" /><br />
-
-					<label for="image">Image:</label>
-					<input type="text" id="image" name="image" placeholder="Image Name" /><br />
-					
-					<input type="submit" value="Submit" />
-					
-				</fieldset>
-			</form>
+		<div id="divContent" class="clear">
+			<div class="twoColumn">
+				<h2>Latest Movie Industry News</h2>
+				<div class="newsItem clear">
+					<div class="imgWrapper"><img src="img/news/kevin_spacey.jpg" alt="Kevin Spacey" class="imgReSize" /></div>
+					<h3>Kevin Spacey to deliver MacTaggart lecture</h2>
+					<p>Award-winning actor Kevin Spacey is to deliver the annual MacTaggart lecture as part of the 2013 Edinburgh International Television Festival. Spacey, star of the acclaimed Netflix drama, House of Cards, will discuss the "huge opportunity, innovation and creativity" in the TV industry. He added that he was "honoured" and "excited" to share his thoughts.</p>
+				</div>
+				<div class="newsItem clear">
+					<img src="img/news/darth_vader.jpg" alt="Darth Vader" class="imgReSize" />
+					<h3>Star Wars: Episode VII' director J.J. Abrams drops new hints about film</h2>
+					<p>'Star Wars: Episode VII' is set to begin filming in January, according to director J.J. Abrams. He also spoke briefly about his vision for how the film will fit in to the franchise.</p>
+				</div>
+			</div><!-- end of twoColumn -->
+			<div class="oneColumn leftMargin">
+				<div class="topTenList">
+					<h2>Top Ten Movies</h2>
+					<ol>
+						<?php
+							$database->query('SELECT title FROM movies LIMIT 0, 10');
+							$topTen = $database->resultSet();
+							foreach ($topTen as $value) {
+								echo "<li class=''>" . $value['title'] . "</li>";
+							}
+						?>
+					</ol>
+				</div>
+			</div><!-- end of oneColumn -->
+			
+			
+			
 		</div><!-- end of divContent -->
 		<footer>
 			<p>This is the footer!</p>

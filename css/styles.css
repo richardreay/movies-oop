@@ -7,8 +7,24 @@
 
 */
 
-body, div, h1, form, fieldset, input, textarea {
-	margin: 0; padding: 0; border: 0; outline: none;
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600);
+
+body, div, h1, h2, h3, h4, form, fieldset, input, textarea {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: none;
+}
+
+h2 {
+	margin-bottom: 10px;
+	font-weight: 600;
+	font-size: 24px;
+}
+
+h3 {
+	font-weight: 600;
+	font-size: 18px;
 }
 
 .clear {
@@ -19,6 +35,8 @@ body {
 	background: #fff url('../img/body_bg.gif') top center no-repeat;
 	text-align: center;
 	color: #34495e;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 14px;
 }
 
 #divWrapper {
@@ -56,11 +74,63 @@ header {
 
 #divContent {
 	background: transparent url('../img/content_bg.png') top left repeat;
-	padding: 10px;
+	padding: 20px;
+}
+
+div.twoColumn {
+	width: 600px;
+	float: left;
+}
+
+div.oneColumn {
+	width: 300px;
+	float: left;
+}
+
+.leftMargin {
+	margin-left: 20px;
+}
+
+div.newsItem {
+	position: relative;
+	padding-left: 95px;
+	margin: 0 0 20px 0;
+}
+
+.imgReSize {
+	position: absolute;
+	left: 0;
+	top: 15px;
+	width: 75px;
+	height: auto;
+	display: block;
+	padding: 5px;
+	border: 1px solid #bdc3c7;
+	border-radius: 10px;
+	
 }
 
 
+/*   PAGINATION STYLES   */
 
+#pagination {
+	
+}
+
+#pagination a {
+	background-color: #8e44ad;
+	color: #fff;
+	text-decoration: none;
+	padding: 3px 6px;
+}
+
+#pagination a:hover {
+	background-color: #9b59b6;
+}
+
+.pagination-current {
+	padding: 3px 6px;
+}
 
 
 /*    FORM STYLES    */
@@ -69,7 +139,7 @@ label {
 	float: left;
 	clear: left;
 	margin: 8px 10px 0 0;
-	width: 95px;
+	width: 115px;
 	text-align: right;
 	font-size: 14px;
 	color: #445668; 
@@ -77,7 +147,26 @@ label {
 	text-shadow: 0px 1px 0px #f2f2f2;
 }
 
-input {
+.radioSpan {
+	display: block;
+	float: left;
+	height: 30px;
+	margin: 6px 10px 0 0;
+	padding: 0;
+	width: 115px;
+	text-align: right;
+	font-size: 14px;
+	color: #445668; 
+	text-transform: uppercase;
+	text-shadow: 0px 1px 0px #f2f2f2;
+}
+
+.radio {
+	float: left;
+}
+
+
+input, select {
 	width: 200px;
 	height: 30px;
 	padding: 2px 20px 2px 20px;
@@ -90,35 +179,57 @@ input {
 	text-transform: uppercase;
 	text-shadow: 0px -1px 0px #334f71; 
 }
-	input::-webkit-input-placeholder  {
-    	color: #DDC4E8; text-shadow: 0px -1px 0px #38506b;  
-	}
-	input:-moz-placeholder {
-	    color: #DDC4E8; text-shadow: 0px -1px 0px #DDC4E8; 
-	}
 
+select {
+	width: 240px;
+	height: 34px;
+}
+input::-webkit-input-placeholder  {
+	color: #fff; text-shadow: 0px -1px 0px #38506b;  
+}
+input:-moz-placeholder {
+	color: #fff !important;
+	text-shadow: 0px -1px 0px #DDC4E8 !important;
+	opacity: 1 !important; 
+}
+input::-moz-placeholder {
+    color: #fff !important;
+	opacity: 1;
+	
+}
 textarea {
-	width: 260px; height: 170px; padding: 12px 20px 0px 20px; margin: 0 0 20px 0; 
+	width: 260px;
+	height: 170px;
+	padding: 12px 20px 0px 20px;
+	margin: 0 0 20px 0; 
 	background: #5E768D;
 	background: -moz-linear-gradient(top, #546A7F 0%, #5E768D 20%); /* firefox */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#546A7F), color-stop(20%,#5E768D)); /* webkit */
 	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
 	-moz-box-shadow: 0px 1px 0px #f2f2f2;-webkit-box-shadow: 0px 1px 0px #f2f2f2;
-	font-family: sans-serif; font-size: 14px; color: #f2f2f2; text-transform: uppercase; text-shadow: 0px -1px 0px #334f71; 
+	font-family: sans-serif;
+	font-size: 14px;
+	color: #f2f2f2;
+	text-transform: uppercase;
+	text-shadow: 0px -1px 0px #334f71; 
 }
-	textarea::-webkit-input-placeholder  {
-    	color: #a1b2c3; text-shadow: 0px -1px 0px #38506b;  
-	}
-	textarea:-moz-placeholder {
-	    color: #a1b2c3; text-shadow: 0px -1px 0px #38506b; 
-	}
+textarea::-webkit-input-placeholder  {
+	color: #a1b2c3; text-shadow: 0px -1px 0px #38506b;  
+}
+textarea:-moz-placeholder {
+	color: #a1b2c3; text-shadow: 0px -1px 0px #38506b; 
+}
 	
 input:focus, textarea:focus {
 	background: #9b59b6;
 }
 
+input[type=radio] {
+	width: 40px;
+}
+
 input[type=submit] {
-	width: 120px; height: 30px; padding: 5px 10px; margin: 0 15px 0 105px;
+	width: 120px; height: 30px; padding: 5px 10px; margin: 0 15px 0 125px;
 	background: #A30CE4;
 	cursor: pointer;
 	color: #f2f2f2;
